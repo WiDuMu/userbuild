@@ -1,0 +1,14 @@
+{
+  "name": "userbuild",
+  "type": "module",
+  "devDependencies": {
+    "esbuild": "^0.21.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "bun run scripts/build.mjs",
+    "node-build": "node scripts/build.mjs"
+  }
+}
