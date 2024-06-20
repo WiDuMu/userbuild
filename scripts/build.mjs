@@ -1,7 +1,9 @@
 import * as esbuild from 'esbuild'
+/** Invokes the esbuild with the relevant options */
+
 
 await esbuild.build({
-  entryPoints: ['src/*user.ts'],
+  entryPoints: ['src/*user.ts', 'src/*user.js'],
   bundle: true,
   outdir: 'out',
   splitting: false,
