@@ -8,6 +8,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
+    "clean": "rm out/*.js",
     "build": "bun run scripts/build.mjs",
     "node-build": "node scripts/build.mjs"
   }
