@@ -2,7 +2,7 @@
 2nd attempt to build a simple bundler for userscript development. It uses esbuild, and injects the metadata comments back into the built JavaScript. Write your `.user.ts` or `.user.js` files in the `src` directory, and it will create a useable script in the `out` directory.
 
 
-###To install dependencies:
+### To install dependencies:
 
 #### bun
 ```bash
