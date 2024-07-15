@@ -19,7 +19,8 @@ await esbuild.build({
   splitting: false,
   sourcemap: false,
   treeShaking: true,
-  target: ['es5'],
+  target: ['es2022'], // You can go as low as es6 with few issues, es5 can result in unforseen errors.
+  format: 'esm', // Use either 'esm' or 'iife' depending on how old your targets are.
   banner: {
     js: `// ==UserScript==
 // @name        New script 

@@ -1,6 +1,7 @@
 # userbuild
 2nd attempt to build a simple bundler for userscript development. It uses esbuild, and injects the metadata comments back into the built JavaScript. Write your `.user.ts` or `.user.js` files in the `src` directory, and it will create a useable script in the `out` directory.
 
+This allows you to use typescript, npm packages, and newer syntax, and get a viable userscript out of it.
 
 ### To install dependencies:
 
@@ -24,5 +25,3 @@ bun run build
 ```bash
 npm run node-build
 ```
-
-This project was created using `bun init` in bun v1.1.13. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
