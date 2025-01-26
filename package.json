@@ -2,14 +2,13 @@
   "name": "userbuild",
   "type": "module",
   "devDependencies": {
-    "esbuild": "^0.21.5"
+    "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "scripts": {
     "clean": "rm out/*.js",
-    "build": "bun run scripts/build.mjs",
-    "node-build": "node scripts/build.mjs"
+    "build": "bun run scripts/build.ts"
   }
 }

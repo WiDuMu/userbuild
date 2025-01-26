@@ -176,3 +176,6 @@ dist
 
 # Bun lockfile
 bun.lockb
+
+# Out folder
+out/
