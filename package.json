@@ -2,6 +2,7 @@
   "name": "userbuild",
   "type": "module",
   "devDependencies": {
+    "@types/greasemonkey": "^4.0.7",
     "@types/bun": "latest"
   },
   "peerDependencies": {
