@@ -1,17 +1,20 @@
-const entrypoints = [
-	...new Bun.Glob("src/*user.ts").scanSync("."),
-	...new Bun.Glob("src/*user.js").scanSync("."),
-];
+import { watch } from "fs";
 
-const result = await Bun.build({
-	entrypoints: entrypoints,
-	outdir: "out",
-	splitting: false,
-	sourcemap: "none",
-	target: "browser", // This is different from esbuild for some reason
-	format: "iife", // Use either 'esm' or 'iife' depending on how old your targets are.
-	/** The banner is used to configure your userscript */
-	banner: `// ==UserScript==
+async function buildScripts() {
+	const entrypoints = [
+		...new Bun.Glob("src/*user.ts").scanSync("."),
+		...new Bun.Glob("src/*user.js").scanSync("."),
+	];
+
+	const result = await Bun.build({
+		entrypoints: entrypoints,
+		outdir: "out",
+		splitting: false,
+		sourcemap: "none",
+		target: "browser", // This is different from esbuild for some reason
+		format: "iife", // Use either 'esm' or 'iife' depending on how old your targets are.
+		/** The banner is used to configure your userscript */
+		banner: `// ==UserScript==
  // @name        New script 
  // @namespace   Violentmonkey Scripts
  // @match       *://example.org/*
@@ -20,6 +23,16 @@ const result = await Bun.build({
  // @author      -
  // ==/UserScript==
  `,
-});
+	});
 
-console.log(result);
+	console.log(result);
+}
+
+if (process.argv.includes("--watch")) {
+	const watcher = watch("src/", { recursive: true }, (event, filename) => {
+		console.log(`Detected change in ${filename}, rebuilding`);
+		buildScripts();
+	});
+}
+
+buildScripts();
