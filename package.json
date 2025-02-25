@@ -2,8 +2,8 @@
   "name": "userbuild",
   "type": "module",
   "devDependencies": {
-    "@types/greasemonkey": "^4.0.7",
-    "@types/bun": "latest"
+    "@types/bun": "^1.2.3",
+    "@types/greasemonkey": "^4.0.7"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
