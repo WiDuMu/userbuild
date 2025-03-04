@@ -19,3 +19,11 @@ bun install
 ```bash
 bun run build
 ```
+
+### Philosophy
+This project aims to be a relatively simple scaffold to build a project around for your own userscripts. It aims to have a minimal set of dependencies, and be unopinionated about any tools you might use outside of it.
+
+Currently our dependencies are:
+* Bun (Package manager, runtime, bundler)
+* @types/bun (Providing typing information for bun)
+* @types/greasemonkey (Providing typing information about greasemonkey)
