@@ -30,9 +30,19 @@ async function buildScripts() {
 
 if (process.argv.includes("--watch")) {
 	const watcher = watch("src/", { recursive: true }, (event, filename) => {
-		console.log(`Detected change in ${filename}, rebuilding`);
-		buildScripts();
+		console.log(`Detected change in ${filename}, rebuilding...`);
+		try {
+			buildScripts();
+		} catch (err) {
+			console.error(`Encountered error building script "${filename}": ${err}`);
+		}
 	});
+
+	process.on("SIGINT", () => {
+		console.log("\nExiting...")
+		watcher.close();
+		process.exit(0);
+	})
 }
 
 buildScripts();
