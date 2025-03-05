@@ -4,11 +4,14 @@ name: Bun ci
 
 on:
   push:
-    tags:        
-      - '*' 
-    branches: [ "actions" "main" ]
+    tags: [ "*" ]
+    branches: 
+      - "actions" 
+      - "main"
   workflow_dispatch:
-    branches: [ "actions" "main" ]
+    branches: 
+      - "actions" 
+      - "main"
 
 jobs:
   build:
