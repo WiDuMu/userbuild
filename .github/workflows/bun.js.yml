@@ -1,20 +1,16 @@
 # This workflow will do a clean installation of dependencies, build the source code and upload a release
-
-name: Bun ci
+name: Release build
 
 on:
   push:
     tags:
-      - v*
+      - "*"
     branches: 
       - "main"
   workflow_dispatch:
-    branches: 
-      - "main"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
