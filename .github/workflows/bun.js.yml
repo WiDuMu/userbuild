@@ -8,6 +8,7 @@ on:
     tags:        
       - '*' 
     # branches: [ "actions" ]
+  workflow_dispatch:
 
 jobs:
   build:
