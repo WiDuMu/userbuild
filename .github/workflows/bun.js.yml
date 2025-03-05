@@ -31,8 +31,7 @@ jobs:
     - name: Upload release
       uses: softprops/action-gh-release@v2
       with:
-        files:
-          - "out/*user.js"
+        files: "out/*user.js"
     # - name: Upload a Build Artifact
     #   uses: actions/upload-artifact@v4.6.1
     #   with:
