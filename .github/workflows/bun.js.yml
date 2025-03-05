@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
     permissions:
       contents: write
     steps:
@@ -19,7 +19,7 @@ jobs:
       with:
         bun-version: latest
     - name: bun install
-      run: bun i
+      run: bun i -p --no-progress
     - name: bun build
       run: bun run build
     - name: Upload release
@@ -27,4 +27,5 @@ jobs:
       with:
         allowUpdates: true
         files: "out/*user.js"
+        token: ${{ secrets.TOKEN }}
 

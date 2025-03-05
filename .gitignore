@@ -178,5 +178,7 @@ dist
 bun.lockb
 bun.lock
 
+.env
+
 # Out folder
 out/
