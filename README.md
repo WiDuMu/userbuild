@@ -27,3 +27,4 @@ Currently our dependencies are:
 * Bun (Package manager, runtime, bundler)
 * @types/bun (Providing typing information for bun)
 * @types/greasemonkey (Providing typing information about greasemonkey)
+* json5 for processing `manifest.user.json5` (the configuration file)

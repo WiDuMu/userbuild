@@ -1,0 +1,33 @@
+# This workflow will do a clean installation of dependencies, build the source code and upload a release
+
+name: Bun ci
+
+on:
+  push:
+    tags: [ "v*" ]
+    branches: 
+      - "main"
+  workflow_dispatch:
+    branches: 
+      - "main"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: bun-build
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+    - name: bun install
+      run: bun i
+    - name: bun build
+      run: bun run build
+    - name: Upload release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: "out/*user.js"
+

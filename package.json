@@ -3,7 +3,8 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "^1.2.3",
-    "@types/greasemonkey": "^4.0.7"
+    "@types/greasemonkey": "^4.0.7",
+    "json5": "2.2.3"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
