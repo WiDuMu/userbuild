@@ -4,12 +4,12 @@ import json5 from "json5";
 
 async function buildScripts() {
 	const entrypoints = [
-		...new Bun.Glob("src/*user.ts").scanSync("."),
-		...new Bun.Glob("src/*user.js").scanSync("."),
+		...new Bun.Glob("src/**user.ts").scanSync("."),
+		...new Bun.Glob("src/**user.js").scanSync("."),
 	];
 
-	const manifestPath = [...new Bun.Glob("src/manifest.user.{json,jsonc,json5}").scanSync(".")];
-	console.log(manifestPath);
+	
+	const manifestPath = [...new Bun.Glob("src/**manifest.user.{json,jsonc,json5}").scanSync(".")];
 	const manifestFile = Bun.file(manifestPath[0]);
 	const manifestText = await manifestFile.text();
 	const manifest = json5.parse(manifestText);

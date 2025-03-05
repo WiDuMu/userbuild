@@ -1,8 +1,6 @@
 /// A script to generate userscript headers
 
-
-
-/** A userscript */
+/** A type representing a userscript's metadata */
 type UserScriptManifest = {
     author?: string;
     /** The name of your userscript. */
@@ -43,12 +41,6 @@ type UserScriptManifest = {
 /** A non empty array of something */
 type NotEmptyArray<T> = T[] extends [] ? never : T[];
 
-import Bun from "bun";
-
-// Read file
-const manifestPath = "./src/manifest.user.jsonc";
-const fallbackManifestPath = "./src/manifest.user.json"
-
 export function buildHeader(manifest : UserScriptManifest) {
     if (!manifest.name || !manifest.match) {
         throw new TypeError("Missing name or match, cannot make a valid userscript");
@@ -60,36 +52,12 @@ export function buildHeader(manifest : UserScriptManifest) {
 // @version     ${manifest.version ? manifest.version : "1.0"}
 ${manifest.description ? `// description  ${manifest.description}\n` : ""}\
 // @namespace   ${manifest.namespace ? manifest.namespace : "Userbuild script"}
+${manifest.icon ? `// @icon        ${manifest.icon}\n` : ""}\
+${manifest.noframes ? "// @noframes\n" : ""}\
+${manifest["run-at"] ? `// @run-at      ${manifest["run-at"]}\n` : ""}\
 ${manifest.match.map(match => `// @match       ${match}`).join("\n")}
 ${manifest.exclude ? manifest.exclude.map(exclude => `// @exclude       ${exclude}`).join('\n') : ""}\
 ${manifest.grant ? manifest.grant.map(perm => `// @grant       ${perm}`).join("\n") : "// @grant  none"}
 // ==/UserScript==
 `;
 }
-
-export async function buildHeaderFs() {
-    let manifestFile = Bun.file(manifestPath);
-    if (!(await manifestFile.exists())) {
-        manifestFile = Bun.file(manifestPath);
-    }
-    // const manifest = await manifestFile.json() as unknown as UserScriptManifest;
-    const manifest = await import(manifestPath) as unknown as UserScriptManifest;
-    console.log(manifest);
-    if (!manifest.name || !manifest.match) {
-        throw new TypeError("Missing name or match, cannot make a valid userscript");
-    }
-    return `\
-// ==UserScript==
-// @name        ${manifest.name}
-// @author      ${manifest.author ? manifest.author : "-"}
-// @version     ${manifest.version ? manifest.version : "1.0"}
-${manifest.description ? `// description  ${manifest.description}\n` : ""}\
-// @namespace   ${manifest.namespace ? manifest.namespace : "Userbuild script"}
-${manifest.match.map(match => `// @match       ${match}`).join("\n")}
-${manifest.exclude ? manifest.exclude.map(exclude => `// @exclude       ${exclude}`).join('\n') : ""}\
-${manifest.grant ? manifest.grant.map(perm => `// @grant       ${perm}`).join("\n") : "// @grant  none"}
-// ==/UserScript==
-`;
-
-}
-
