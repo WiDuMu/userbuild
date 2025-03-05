@@ -5,7 +5,9 @@ name: Bun ci
 
 on:
   push:
-    branches: [ "main" ]
+    tags:        
+      - '*' 
+    branches: [ "actions" ]
 
 jobs:
   build:
@@ -19,11 +21,13 @@ jobs:
       with:
         bun-version: latest
     - run: bun run build
-    # - name: 
-    #   uses: actions/setup-node@v4
-    #   with:
-    #     node-version: ${{ matrix.node-version }}
-    #     cache: 'npm'
-    # - run: npm ci
-    # - run: npm run build --if-present
-    # - run: npm test
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        # Artifact name
+        name: userscripts# optional, default is artifact
+          # A file, directory or wildcard pattern that describes what to upload
+        path: ./out/*.user.js
+        if-no-files-found: error
+        retention-days: 1
+
