@@ -1,4 +1,6 @@
 {
+    /** The script's entry point. */
+    "entrypoints": ["user.ts"],
     /** If you don't want to use manifests, use banner to ***override*** and insert your own string */
     "banner": "",
     /** Your script's name */
@@ -9,5 +11,6 @@
     /** Pretty description */
     "description": "Example script",
     "match": ["*://example.org/*"],
-    "grant": ["none"],
+    "grant": [],
+    "run-at": null,
 }

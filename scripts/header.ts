@@ -57,7 +57,7 @@ ${manifest.noframes ? "// @noframes\n" : ""}\
 ${manifest["run-at"] ? `// @run-at      ${manifest["run-at"]}\n` : ""}\
 ${manifest.match.map(match => `// @match       ${match}`).join("\n")}
 ${manifest.exclude ? manifest.exclude.map(exclude => `// @exclude       ${exclude}`).join('\n') : ""}\
-${manifest.grant ? manifest.grant.map(perm => `// @grant       ${perm}`).join("\n") : "// @grant  none"}
+${(manifest.grant?.length) ? manifest.grant.map(perm => `// @grant       ${perm}`).join("\n") : "// @grant       none\n"}\
 // ==/UserScript==
 `;
 }
