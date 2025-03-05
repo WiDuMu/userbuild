@@ -24,15 +24,22 @@ jobs:
       uses: oven-sh/setup-bun@v2
       with:
         bun-version: latest
-    - run: bun i
-    - run: bun run build
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.6.1
+    - name: bun install
+      run: bun i
+    - name: bun build
+      run: bun run build
+    - name: Upload release
+      uses: softprops/action-gh-release@v2
       with:
-        # Artifact name
-        name: userscripts# optional, default is artifact
-        # A file, directory or wildcard pattern that describes what to upload
-        path: ./out/*user.js
-        if-no-files-found: error
-        retention-days: 1
+        files:
+          - "out/*user.js"
+    # - name: Upload a Build Artifact
+    #   uses: actions/upload-artifact@v4.6.1
+    #   with:
+    #     # Artifact name
+    #     name: userscripts # optional, default is artifact
+    #     # A file, directory or wildcard pattern that describes what to upload
+    #     path: ./out/*user.js
+    #     if-no-files-found: error
+    #     retention-days: 1
 
