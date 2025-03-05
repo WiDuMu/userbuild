@@ -1,4 +1,4 @@
-# This workflow will do a clean installation of dependencies, build the source code and upload an artifact
+# This workflow will do a clean installation of dependencies, build the source code and upload a release
 
 name: Bun ci
 
@@ -6,11 +6,9 @@ on:
   push:
     tags: [ "v*" ]
     branches: 
-      - "actions" 
       - "main"
   workflow_dispatch:
     branches: 
-      - "actions" 
       - "main"
 
 jobs:
@@ -32,13 +30,4 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: "out/*user.js"
-    # - name: Upload a Build Artifact
-    #   uses: actions/upload-artifact@v4.6.1
-    #   with:
-    #     # Artifact name
-    #     name: userscripts # optional, default is artifact
-    #     # A file, directory or wildcard pattern that describes what to upload
-    #     path: ./out/*user.js
-    #     if-no-files-found: error
-    #     retention-days: 1
 
