@@ -1,10 +1,18 @@
 import { watch } from "fs";
+import { buildHeader } from "./header";
+import json5 from "json5";
 
 async function buildScripts() {
 	const entrypoints = [
 		...new Bun.Glob("src/*user.ts").scanSync("."),
 		...new Bun.Glob("src/*user.js").scanSync("."),
 	];
+
+	const manifestPath = [...new Bun.Glob("src/manifest.user.{json,jsonc,json5}").scanSync(".")];
+	console.log(manifestPath);
+	const manifestFile = Bun.file(manifestPath[0]);
+	const manifestText = await manifestFile.text();
+	const manifest = json5.parse(manifestText);
 
 	const result = await Bun.build({
 		entrypoints: entrypoints,
@@ -14,15 +22,7 @@ async function buildScripts() {
 		target: "browser", // This is different from esbuild for some reason
 		format: "iife", // Use either 'esm' or 'iife' depending on how old your targets are.
 		/** The banner is used to configure your userscript */
-		banner: `// ==UserScript==
- // @name        New script 
- // @namespace   Violentmonkey Scripts
- // @match       *://example.org/*
- // @grant       none
- // @version     1.0
- // @author      -
- // ==/UserScript==
- `,
+		banner: buildHeader(manifest),
 	});
 
 	console.log(result);

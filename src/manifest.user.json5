@@ -1,0 +1,13 @@
+{
+    /** If you don't want to use manifests, use banner to ***override*** and insert your own string */
+    "banner": "",
+    /** Your script's name */
+    "name": "Example script",
+    "version": "1.0",
+    /** Namespaces are used to distiguish between 2 scripts of the same name */
+    "namespace": "Userscript scripts",
+    /** Pretty description */
+    "description": "Example script",
+    "match": ["*://example.org/*"],
+    "grant": ["none"],
+}
