@@ -10,7 +10,12 @@
     "namespace": "Userscript scripts",
     /** Pretty description */
     "description": "Example script",
+    /** URLs to match on running your userscript. */
     "match": ["*://example.org/*"],
+    /** URLs to explicitly NOT match for running your userscript. */
+    "match-exclude": [],
+    /** A list of extra permissions to grant to your script. */
     "grant": [],
-    "run-at": null,
+    /** When your script will be run on the page. */
+    "run-at": "document-end",
 }
