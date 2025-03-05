@@ -1,5 +1,5 @@
 # This workflow will do a clean installation of dependencies, build the source code and upload a release
-name: Release build
+name: Release
 
 on:
   push:
@@ -25,7 +25,5 @@ jobs:
     - name: Upload release
       uses: softprops/action-gh-release@v2
       with:
-        allowUpdates: true
         files: "out/*user.js"
-        token: ${{ secrets.TOKEN }}
 
